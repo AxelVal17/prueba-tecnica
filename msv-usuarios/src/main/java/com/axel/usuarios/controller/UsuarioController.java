@@ -49,7 +49,7 @@ public class UsuarioController extends CommonControllers<UsuarioRequest, Usuario
         });
     }
     
-    // Sobrescribir GET por ID - YA TIENE MENSAJE ✓
+    // Sobrescribir GET por ID 
     @Override
     @GetMapping("/{id}")
     public ResponseEntity<?> obtenerPorId(@PathVariable @Positive(message = "El id debe ser positivo") String id) {
@@ -69,7 +69,7 @@ public class UsuarioController extends CommonControllers<UsuarioRequest, Usuario
                 }));
     }
     
-    // Sobrescribir POST (CREAR) - YA TIENE MENSAJE ✓
+    // Sobrescribir POST (CREAR) 
     @Override
     @PostMapping
     public ResponseEntity<?> insertar(@Valid @RequestBody UsuarioRequest request) {
@@ -86,11 +86,11 @@ public class UsuarioController extends CommonControllers<UsuarioRequest, Usuario
             });
     }
     
-    // Sobrescribir PUT (ACTUALIZAR) - YA TIENE MENSAJE ✓
+    // Sobrescribir PUT (ACTUALIZAR) 
     @Override
     @PutMapping("/{id}")
     public ResponseEntity<?> actualizar(
-            @PathVariable @Positive(message = "El id debe ser positivo") String id,  // ← AGREGAR @Positive
+            @PathVariable @Positive(message = "El id debe ser positivo") String id, 
             @Valid @RequestBody UsuarioRequest request) {
         
         UsuarioResponse usuarioActualizado = service.actualizar(request, id);
@@ -113,7 +113,7 @@ public class UsuarioController extends CommonControllers<UsuarioRequest, Usuario
             });
     }
     
-    // Sobrescribir DELETE (ELIMINAR) - YA TIENE MENSAJE ✓
+    // Sobrescribir DELETE (ELIMINAR) 
     @Override
     @DeleteMapping("/{id}")
     public ResponseEntity<?> eliminar(@PathVariable @Positive(message = "El id debe ser positivo") String id) {
