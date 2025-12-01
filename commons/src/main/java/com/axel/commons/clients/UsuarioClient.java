@@ -14,17 +14,17 @@ import com.axel.commons.dtos.UsuarioResponse;
 @FeignClient(name = "msv-usuarios")
 public interface UsuarioClient {
 	
-	  // 1. GET - Todos los usuarios
-	 @GetMapping("/usuarios") 
-	 List<UsuarioResponse> obtenerTodosLosUsuarios();
+	// 1. GET - Todos los usuarios
+	@GetMapping("/usuarios") 
+	List<UsuarioResponse> obtenerTodosLosUsuarios();
 
     // 2. GET - Usuario por ID
-    @GetMapping("/{id}")
-    UsuarioResponse obtenerUsuarioPorId(@PathVariable Long id);
+	@GetMapping("/usuarios/{id}") 
+	UsuarioResponse obtenerUsuarioPorId(@PathVariable Long id);
 
     // 3. GET - Usuario por NOMBRE
-    @GetMapping("/nombre/{nombre}")
-    List<UsuarioResponse> obtenerUsuariosPorNombre(@PathVariable String nombre);
+	@GetMapping("/usuarios/buscar-nombre/{nombre}")  
+	List<UsuarioResponse> obtenerUsuariosPorNombre(@PathVariable String nombre);
 
     // 4. POST - Crear usuario
     @PostMapping

@@ -15,16 +15,16 @@ import com.axel.commons.dtos.RolResponse;
 public interface RolClient {
 	
 	 // 1. GET - Todos los roles
-	 @GetMapping("/roles")
+	 @GetMapping("/roles")  //
 	 List<RolResponse> obtenerTodosLosRoles();
 
     // 2. GET - Rol por ID
-    @GetMapping("/{id}")
-    RolResponse obtenerRolPorId(@PathVariable Long id);
+	 @GetMapping("/roles/{id}")  
+	 RolResponse obtenerRolPorId(@PathVariable Long id);
 
     // 3. GET - Rol por NOMBRE
-    @GetMapping("/nombre/{nombre}")
-    List<RolResponse> obtenerRolesPorNombre(@PathVariable String nombre);
+	 @GetMapping("/roles/buscar-nombre/{nombre}")  // ← Path completo
+	 List<RolResponse> obtenerRolesPorNombre(@PathVariable String nombre);
 
     // 4. POST - Crear rol
     @PostMapping

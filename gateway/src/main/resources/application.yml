@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: gateway
+  
+  cloud:
+    loadbalancer:
+      enabled: true
+    
+    gateway:
+      routes:
+        # Microservicio de Usuarios
+        - id: msv-usuarios
+          uri: lb://msv-usuarios
+          predicates:
+            - Path=/api/usuarios/**
+          filters:
+            - StripPrefix=2
+        
+        # Microservicio de Roles  
+        - id: msv-roles
+          uri: lb://msv-roles
+          predicates:
+            - Path=/api/roles/**
+          filters:
+            - StripPrefix=2
+
+server:
+  port: 8090
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
