@@ -27,37 +27,38 @@ public class CommonControllers <RQ, RS, S extends CommonService<RQ, RS>> {
 	public CommonControllers(S service) {
 		this.service = service;
 	}
+	
+	 @GetMapping
+	    public ResponseEntity<List<RS>> listarTodos() {
+	        return ResponseEntity.ok(service.listar());
+	    }
 
-	@GetMapping
-	public ResponseEntity<List<RS>> listar() {
-		return ResponseEntity.ok(service.listar());
-	}
+	   @GetMapping("/{id}")
+	    public ResponseEntity<?> obtenerPorId(@PathVariable @Positive(message = "El id debe ser positivo") String id) {
+	        Optional<RS> resultado = service.buscarPorId(id);
+	        return resultado.map(ResponseEntity::ok)
+	                       .orElse(ResponseEntity.notFound().build());
+	    }
 
-	@GetMapping("/{id}")
-	public ResponseEntity<RS> obtenerPorId(@PathVariable @Positive(message = "El id debe ser positivo") String id) {
-		Optional<RS> resultado = service.buscarPorId(id);
-		return resultado.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build()); // CORREGIDO
-	}
+	    @PostMapping
+	    public ResponseEntity<?> insertar(@Valid @RequestBody RQ request) {
+	        return ResponseEntity.status(HttpStatus.CREATED).body(service.registrar(request));
+	    }
 
-	@PostMapping
-	public ResponseEntity<RS> insertar(@Valid @RequestBody RQ request) {
-		return ResponseEntity.status(HttpStatus.CREATED).body(service.registrar(request));
-	}
+	    @PutMapping("/{id}")
+	    public ResponseEntity<?> actualizar(@PathVariable @Positive(message = "El id debe ser positivo") String id,
+	            @Valid @RequestBody RQ request) {
+	        RS resultado = service.actualizar(request, id);
+	        if (resultado != null) {
+	            return ResponseEntity.ok(resultado);
+	        }
+	        return ResponseEntity.notFound().build();
+	    }
 
-	@PutMapping("/{id}")
-	public ResponseEntity<RS> actualizar(@PathVariable @Positive(message = "El id debe ser positivo") String id,
-			@Valid @RequestBody RQ request) {
-		RS resultado = service.actualizar(request, id);
-		if (resultado != null) {
-			return ResponseEntity.ok(resultado);
-		}
-		return ResponseEntity.notFound().build(); 
-	}
-
-	@DeleteMapping("/{id}")
-	public ResponseEntity<Void> eliminar(@PathVariable @Positive(message = "El id debe ser positivo") String id) {
-		service.eliminar(id);
-		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-	}
+	    @DeleteMapping("/{id}")
+	    public ResponseEntity<?> eliminar(@PathVariable @Positive(message = "El id debe ser positivo") String id) {
+	        service.eliminar(id);
+	        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+	    }
 	
 }
