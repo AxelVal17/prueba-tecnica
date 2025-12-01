@@ -15,8 +15,8 @@ import com.axel.usuarios.repository.UsuarioRepository;
 
 import lombok.extern.slf4j.Slf4j;
 
-@Service
 @Slf4j
+@Service
 public class UsuarioServiceImpl implements UsuarioService {
 
 	@Autowired

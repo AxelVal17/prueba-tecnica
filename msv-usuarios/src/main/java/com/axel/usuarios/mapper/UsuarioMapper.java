@@ -11,23 +11,20 @@ import com.axel.usuarios.entity.Usuario;
 
 @Component
 public class UsuarioMapper implements CommonMapper<UsuarioRequest, UsuarioResponse, Usuario> {
-
 	@Override
-	public UsuarioResponse entityToResponse(Usuario entity) {
-		// Verificar si la entidad es nula para evitar NullPointerException
-		if (entity == null) return null;
-				
-		// Convertir la entidad Usuario a UsuarioResponse con todos sus campos
-		return new UsuarioResponse(
-			entity.getId(),
-			entity.getNombre(),
-			entity.getAPaterno(),
-			entity.getAMaterno(),
-			entity.getRolesId(),
-			// Convertir la colección de roles a List<Object> para el response
-			entity.getRoles() != null ? List.of(entity.getRoles().toArray()) : List.of()
-		);
-	}
+    public UsuarioResponse entityToResponse(Usuario entity) {
+        if (entity == null) return null;
+        
+        // SOLO enviamos los IDs de roles, NO los objetos completos
+        return new UsuarioResponse(
+            entity.getId(),
+            entity.getNombre(),
+            entity.getAPaterno(),
+            entity.getAMaterno(),
+            entity.getRolesId(),  // Solo IDs
+            List.of()  // Lista vacía - se llenará en el servicio con Feign Client
+        );
+    }
 
 	@Override
 	public Usuario requestToEntity(UsuarioRequest request) {

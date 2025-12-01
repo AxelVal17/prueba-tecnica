@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import com.axel.commons.dtos.RolRequest;
 import com.axel.commons.dtos.RolResponse;
 
-@FeignClient(name = "roles")  // Nombre del microservicio rol-service
+@FeignClient(name = "msv-roles") 
 public interface RolClient {
 	
 	 // 1. GET - Todos los roles
-    @GetMapping
-    List<RolResponse> obtenerTodosLosRoles();
+	 @GetMapping("/roles")
+	 List<RolResponse> obtenerTodosLosRoles();
 
     // 2. GET - Rol por ID
     @GetMapping("/{id}")

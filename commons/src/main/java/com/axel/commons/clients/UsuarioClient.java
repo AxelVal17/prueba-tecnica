@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import com.axel.commons.dtos.UsuarioRequest;
 import com.axel.commons.dtos.UsuarioResponse;
 
-@FeignClient(name = "usuarios")  // Nombre del microservicio usuario-service
+@FeignClient(name = "msv-usuarios")
 public interface UsuarioClient {
 	
 	  // 1. GET - Todos los usuarios
-    @GetMapping
-    List<UsuarioResponse> obtenerTodosLosUsuarios();
+	 @GetMapping("/usuarios") 
+	 List<UsuarioResponse> obtenerTodosLosUsuarios();
 
     // 2. GET - Usuario por ID
     @GetMapping("/{id}")
