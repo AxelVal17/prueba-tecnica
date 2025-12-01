@@ -25,7 +25,7 @@ public record UsuarioRequest(
 		 String aMaterno,
 		 
 		  // Lista de IDs de roles - puede ser null o vacía
-		  List<Long> rolesId
+		  List<String> rolesId
 		
 		) {
 

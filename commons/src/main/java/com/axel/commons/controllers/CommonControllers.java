@@ -34,7 +34,7 @@ public class CommonControllers <RQ, RS, S extends CommonService<RQ, RS>> {
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<RS> obtenerPorId(@PathVariable @Positive(message = "El id debe ser positivo") Long id) {
+	public ResponseEntity<RS> obtenerPorId(@PathVariable @Positive(message = "El id debe ser positivo") String id) {
 		Optional<RS> resultado = service.buscarPorId(id);
 		return resultado.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build()); // CORREGIDO
 	}
@@ -45,7 +45,7 @@ public class CommonControllers <RQ, RS, S extends CommonService<RQ, RS>> {
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<RS> actualizar(@PathVariable @Positive(message = "El id debe ser positivo") Long id,
+	public ResponseEntity<RS> actualizar(@PathVariable @Positive(message = "El id debe ser positivo") String id,
 			@Valid @RequestBody RQ request) {
 		RS resultado = service.actualizar(request, id);
 		if (resultado != null) {
@@ -55,7 +55,7 @@ public class CommonControllers <RQ, RS, S extends CommonService<RQ, RS>> {
 	}
 
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Void> eliminar(@PathVariable @Positive(message = "El id debe ser positivo") Long id) {
+	public ResponseEntity<Void> eliminar(@PathVariable @Positive(message = "El id debe ser positivo") String id) {
 		service.eliminar(id);
 		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 	}

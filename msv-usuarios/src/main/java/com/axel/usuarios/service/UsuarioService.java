@@ -9,13 +9,10 @@ import com.axel.commons.services.CommonService;
 
 public interface UsuarioService extends CommonService<UsuarioRequest, UsuarioResponse> {
     
-    List<UsuarioResponse> listar();
-    Optional<UsuarioResponse> buscarPorId(Long id);
+	 // Métodos específicos de Usuario:
     List<UsuarioResponse> buscarPorNombre(String nombre);
-    UsuarioResponse registrar(UsuarioRequest request);
-    UsuarioResponse actualizar(UsuarioRequest request, Long id);
-    void eliminar(Long id);
-    boolean existePorId(Long id);
-    List<UsuarioResponse> buscarPorRolId(Long rolId);
+    
+    // CORREGIR: Cambiar Long por String
+    List<UsuarioResponse> buscarPorRolId(String rolId);  
 
 }

@@ -20,7 +20,7 @@ public interface UsuarioClient {
 
     // 2. GET - Usuario por ID
 	@GetMapping("/usuarios/{id}") 
-	UsuarioResponse obtenerUsuarioPorId(@PathVariable Long id);
+	UsuarioResponse obtenerUsuarioPorId(@PathVariable String id);
 
     // 3. GET - Usuario por NOMBRE
 	@GetMapping("/usuarios/buscar-nombre/{nombre}")  
@@ -32,15 +32,15 @@ public interface UsuarioClient {
 
     // 5. PUT - Actualizar usuario
     @PutMapping("/{id}")
-    UsuarioResponse actualizarUsuario(@PathVariable Long id, @RequestBody UsuarioRequest usuarioRequest);
+    UsuarioResponse actualizarUsuario(@PathVariable String id, @RequestBody UsuarioRequest usuarioRequest);
 
     // 6. DELETE - Eliminar usuario
     @DeleteMapping("/{id}")
-    void eliminarUsuario(@PathVariable Long id);
+    void eliminarUsuario(@PathVariable String id);
 
     // Método adicional: Verificar si usuario tiene un rol específico
     @GetMapping("/{idUsuario}/tiene-rol/{idRol}")
-    boolean usuarioTieneRol(@PathVariable Long idUsuario, @PathVariable Long idRol);
+    boolean usuarioTieneRol(@PathVariable String idUsuario, @PathVariable String idRol);
 
     // Método adicional: Obtener usuarios por rol
     @GetMapping("/por-rol/{idRol}")

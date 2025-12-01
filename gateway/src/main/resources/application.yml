@@ -7,22 +7,24 @@ spring:
       enabled: true
     
     gateway:
-      routes:
-        # Microservicio de Usuarios
-        - id: msv-usuarios
-          uri: lb://msv-usuarios
-          predicates:
-            - Path=/api/usuarios/**
-          filters:
-            - StripPrefix=2
-        
-        # Microservicio de Roles  
-        - id: msv-roles
-          uri: lb://msv-roles
-          predicates:
-            - Path=/api/roles/**
-          filters:
-            - StripPrefix=2
+      server:
+        webflux:
+          routes:
+            # Microservicio de Usuarios
+            - id: msv-usuarios
+              uri: lb://msv-usuarios
+              predicates:
+                - Path=/api/usuarios/**
+              filters:
+                - StripPrefix=1
+            
+            # Microservicio de Roles 
+            - id: msv-roles
+              uri: lb://msv-roles
+              predicates:
+                - Path=/api/roles/**
+              filters:
+                - StripPrefix=1
 
 server:
   port: 8090

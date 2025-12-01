@@ -21,7 +21,7 @@ public class Rol {
 	
 	@Id
     @NotNull(message = "El ID del rol es obligatorio")
-    private Long id;
+    private String id;
     
     @NotNull(message = "El nombre del rol es obligatorio")
     @Size(min = 1, max = 20, message = "El nombre del rol debe tener entre 1 y 20 caracteres")

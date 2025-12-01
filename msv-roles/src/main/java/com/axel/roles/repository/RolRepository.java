@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.axel.roles.entity.Rol;
 
 @Repository
-public interface RolRepository extends MongoRepository<Rol, Long>  {
+public interface RolRepository extends MongoRepository<Rol, String>  {
 	
 	  // 1. Buscar roles por nombre exacto
     List<Rol> findByNombre(String nombre);
@@ -28,6 +28,6 @@ public interface RolRepository extends MongoRepository<Rol, Long>  {
 
     // 6. Buscar roles por múltiples IDs
     @Query("{ '_id': { $in: ?0 } }")
-    List<Rol> findByIdIn(List<Long> ids);
+    List<Rol> findByIdIn(List<String> ids);
 
 }

@@ -7,18 +7,9 @@ import com.axel.commons.services.CommonService;
 
 public interface RolService extends CommonService<RolRequest, RolResponse> {
 
-	List<RolResponse> listar();
-
-	List<RolResponse> buscarPorNombre(String nombre);
-
-	RolResponse registrar(RolRequest request);
-
-	RolResponse actualizar(RolRequest request, Long id);
-
-	void eliminar(Long id);
-
-	boolean existePorId(Long id);
-
-	boolean existePorNombre(String nombre);
+	 List<RolResponse> buscarPorNombre(String nombre);
+	    boolean existePorNombre(String nombre);
+	    
+	    List<RolResponse> obtenerRolesPorIds(List<String> ids);
 
 }

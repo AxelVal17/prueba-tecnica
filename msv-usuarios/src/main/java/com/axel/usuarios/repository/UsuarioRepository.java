@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.axel.usuarios.entity.Usuario;
 
 @Repository
-public interface UsuarioRepository extends MongoRepository<Usuario, Long> {
+public interface UsuarioRepository extends MongoRepository<Usuario, String> {
 	
 	// 1. Buscar usuarios por nombre exacto
     List<Usuario> findByNombre(String nombre);
@@ -25,11 +25,11 @@ public interface UsuarioRepository extends MongoRepository<Usuario, Long> {
     // 5. Buscar usuarios que tengan un rol específico
     //Usando query (para cuando rolesId es una lista)
     @Query("{ 'rolesId': ?0 }")
-    List<Usuario> findByRolesIdContaining(Long rolId);
+    List<Usuario> findByRolesIdContaining(String rolId);
 
     // 6. Buscar usuarios que tengan múltiples roles
     @Query("{ 'rolesId': { $in: ?0 } }")
-    List<Usuario> findByRolesIdIn(List<Long> rolesIds);
+    List<Usuario> findByRolesIdIn(List<String> rolesIds);
 
     // 7. Verificar si existe un usuario con ese nombre
     boolean existsByNombre(String nombre);

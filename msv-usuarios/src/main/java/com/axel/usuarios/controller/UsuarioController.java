@@ -23,7 +23,7 @@ public class UsuarioController extends CommonControllers<UsuarioRequest, Usuario
         super(service);
     }
     
-    // SOLO ESTE ENDPOINT EXTRA - así tendrás exactamente 6
+    
     @GetMapping("/buscar-nombre/{nombre}")
     public ResponseEntity<List<UsuarioResponse>> buscarPorNombre(
             @PathVariable String nombre) {

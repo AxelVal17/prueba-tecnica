@@ -8,6 +8,8 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.axel.commons.dtos.RolResponse;
+
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
@@ -24,7 +26,7 @@ public class Usuario {
 	
 
     @Id
-    private Long id;
+    private String id;
 
     @NotNull(message = "El nombre es obligatorio")
     @Size(min = 1, max = 50, message = "El nombre debe tener entre 1 y 50 caracteres")
@@ -41,9 +43,9 @@ public class Usuario {
     @Pattern(regexp = "^[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+$", message = "El apellido materno solo puede contener letras y espacios")
     private String aMaterno;
 
-    private List<Long> rolesId; // [1, 3, 5] - IDs de roles del otro microservicio
+    private List<String> rolesId; // [1, 3, 5] - IDs de roles del otro microservicio
 
-    @Transient
-    private List<Object> roles; // Se llenará con datos del Rol-Service via HTTP
+   
+    private List<RolResponse> roles;
 
 }

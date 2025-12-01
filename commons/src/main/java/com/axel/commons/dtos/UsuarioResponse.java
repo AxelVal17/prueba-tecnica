@@ -4,12 +4,12 @@ import java.util.List;
 
 public record UsuarioResponse(
 		
-		Long id,
+		String id,
 	    String nombre,
 	    String aPaterno,
 	    String aMaterno,
-	    List<Long> rolesId,
-	    List<Object> roles  // Roles completos (se llenarán desde el servicio)
+	    List<String> rolesId,
+	    List<RolResponse> roles  // Roles completos (se llenarán desde el servicio)
 		
 		) {
 

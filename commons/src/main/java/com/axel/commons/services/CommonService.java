@@ -7,14 +7,14 @@ public interface CommonService<RQ, RS> {
 
 	List<RS> listar();
 
-	Optional<RS> buscarPorId(Long id);
+	Optional<RS> buscarPorId(String id);
 
 	RS registrar(RQ request);
 
-	RS actualizar(RQ request, Long id);
+	RS actualizar(RQ request, String id);
 
-	void eliminar(Long id);
+	void eliminar(String id);
 
-	boolean existePorId(Long id);
+	boolean existePorId(String id);
 
 }
