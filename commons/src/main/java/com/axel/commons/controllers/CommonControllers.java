@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+
+import com.axel.commons.dtos.UsuarioResponse;
 import com.axel.commons.services.CommonService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Positive;
@@ -28,10 +30,6 @@ public class CommonControllers <RQ, RS, S extends CommonService<RQ, RS>> {
 		this.service = service;
 	}
 	
-	 @GetMapping
-	    public ResponseEntity<List<RS>> listarTodos() {
-	        return ResponseEntity.ok(service.listar());
-	    }
 
 	   @GetMapping("/{id}")
 	    public ResponseEntity<?> obtenerPorId(@PathVariable @Positive(message = "El id debe ser positivo") String id) {
